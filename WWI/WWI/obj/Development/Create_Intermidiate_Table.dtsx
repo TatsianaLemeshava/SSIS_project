@@ -1,0 +1,1819 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/30/2018 7:16:04 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPBYMINW0111"
+  DTS:CreatorName="MINSK\Tatsiana_Lemeshava"
+  DTS:DTSID="{FF0270D7-FC26-4FD0-9F6D-60D9C4DE6453}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.30"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Create_Intermidiate_Table"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C2682407-5C41-4B24-93DA-9A6E48A1BF6E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6CCADC73-5994-497D-BC0D-EF7563C03D33}"
+      DTS:ObjectName="EPBYMINW0111\SQLEXPRESS.wideworldimporters">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EPBYMINW0111\SQLEXPRESS;Initial Catalog=wideworldimporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E415E59C-78B0-4C53-AEE9-18F8385EF71F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup from Intermidiate Table to Suppliers Table"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Purchasing].[Suppliers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Purchasing].[Suppliers]) [refTable]
+where [refTable].[SupplierID] = ? and [refTable].[SupplierName] = ? and [refTable].[SupplierCategoryID] = ? and [refTable].[PrimaryContactPersonID] = ? and [refTable].[AlternateContactPersonID] = ? and [refTable].[DeliveryMethodID] = ? and [refTable].[DeliveryCityID] = ? and [refTable].[PostalCityID] = ? and [refTable].[SupplierReference] = ? and [refTable].[BankAccountName] = ? and [refTable].[BankAccountBranch] = ? and [refTable].[BankAccountCode] = ? and [refTable].[BankAccountNumber] = ? and [refTable].[BankInternationalCode] = ? and [refTable].[PaymentDays] = ? and [refTable].[PhoneNumber] = ? and [refTable].[FaxNumber] = ? and [refTable].[WebsiteURL] = ? and [refTable].[DeliveryAddressLine1] = ? and [refTable].[DeliveryAddressLine2] = ? and [refTable].[DeliveryPostalCode] = ? and [refTable].[PostalAddressLine1] = ? and [refTable].[PostalAddressLine2] = ? and [refTable].[PostalPostalCode] = ? and [refTable].[LastEditedBy] = ? and [refTable].[ValidFrom] = ? and [refTable].[ValidTo] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SupplierID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SupplierName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SupplierCategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PrimaryContactPersonID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AlternateContactPersonID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryMethodID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryCityID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalCityID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SupplierReference" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BankAccountName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BankAccountBranch" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BankAccountCode" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BankAccountNumber" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BankInternationalCode" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentDays" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InternalComments" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PhoneNumber" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FaxNumber" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WebsiteURL" dataType="DT_WSTR" length="256" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryAddressLine1" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryAddressLine2" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryPostalCode" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryLocation" dataType="DT_IMAGE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalAddressLine1" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalAddressLine2" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalPostalCode" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastEditedBy" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ValidFrom" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="ValidTo" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierName]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierCategoryID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PrimaryContactPersonID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[AlternateContactPersonID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryMethodID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryCityID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalCityID]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierReference]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountName]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountBranch]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountCode]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountNumber]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankInternationalCode]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PaymentDays]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PhoneNumber]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[FaxNumber]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[WebsiteURL]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine1]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine2]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryPostalCode]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine1]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine2]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalPostalCode]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[LastEditedBy]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidFrom]};#{Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidTo]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  connectionManagerRefId="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SupplierID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[SupplierName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SupplierName"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SupplierName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[SupplierCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierCategoryID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierCategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SupplierCategoryID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PrimaryContactPersonID]"
+                      cachedDataType="i4"
+                      cachedName="PrimaryContactPersonID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PrimaryContactPersonID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PrimaryContactPersonID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[AlternateContactPersonID]"
+                      cachedDataType="i4"
+                      cachedName="AlternateContactPersonID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[AlternateContactPersonID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AlternateContactPersonID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[DeliveryMethodID]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryMethodID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryMethodID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DeliveryMethodID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[DeliveryCityID]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryCityID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryCityID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DeliveryCityID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PostalCityID]"
+                      cachedDataType="i4"
+                      cachedName="PostalCityID"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalCityID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PostalCityID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[SupplierReference]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SupplierReference"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierReference]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SupplierReference</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[BankAccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="BankAccountName"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BankAccountName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[BankAccountBranch]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="BankAccountBranch"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountBranch]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BankAccountBranch</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[BankAccountCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankAccountCode"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BankAccountCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[BankAccountNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankAccountNumber"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountNumber]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BankAccountNumber</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[BankInternationalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankInternationalCode"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankInternationalCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BankInternationalCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PaymentDays]"
+                      cachedDataType="i4"
+                      cachedName="PaymentDays"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PaymentDays]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PaymentDays</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PhoneNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PhoneNumber"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PhoneNumber]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PhoneNumber</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[FaxNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="FaxNumber"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[FaxNumber]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FaxNumber</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[WebsiteURL]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="WebsiteURL"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[WebsiteURL]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">WebsiteURL</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[DeliveryAddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DeliveryAddressLine1"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine1]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DeliveryAddressLine1</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[DeliveryAddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DeliveryAddressLine2"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine2]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DeliveryAddressLine2</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[DeliveryPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DeliveryPostalCode"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryPostalCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DeliveryPostalCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PostalAddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="PostalAddressLine1"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine1]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PostalAddressLine1</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PostalAddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="PostalAddressLine2"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine2]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PostalAddressLine2</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[PostalPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostalPostalCode"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalPostalCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PostalPostalCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[LastEditedBy]"
+                      cachedDataType="i4"
+                      cachedName="LastEditedBy"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[LastEditedBy]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LastEditedBy</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[ValidFrom]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ValidFrom"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidFrom]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ValidFrom</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input].Columns[ValidTo]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ValidTo"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidTo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ValidTo</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination Suppliers Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Suppliers Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Purchasing].[Suppliers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT       SupplierID, SupplierName, SupplierCategoryID, PrimaryContactPersonID, AlternateContactPersonID, DeliveryMethodID, DeliveryCityID, PostalCityID, SupplierReference, BankAccountName, BankAccountBranch, 
+                         BankAccountCode, BankAccountNumber, BankInternationalCode, PaymentDays, InternalComments, PhoneNumber, FaxNumber, WebsiteURL, DeliveryAddressLine1, DeliveryAddressLine2, DeliveryPostalCode, 
+                         CAST(DeliveryLocation AS nvarchar(4000)) AS DeliveryLocation, PostalAddressLine1, PostalAddressLine2, PostalPostalCode, LastEditedBy, ValidFrom, ValidTo
+FROM    Purchasing.Suppliers</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  connectionManagerRefId="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[SupplierName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SupplierName"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[SupplierCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierCategoryID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierCategoryID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierCategoryID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PrimaryContactPersonID]"
+                      cachedDataType="i4"
+                      cachedName="PrimaryContactPersonID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PrimaryContactPersonID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PrimaryContactPersonID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[AlternateContactPersonID]"
+                      cachedDataType="i4"
+                      cachedName="AlternateContactPersonID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[AlternateContactPersonID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[AlternateContactPersonID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryMethodID]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryMethodID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryMethodID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryMethodID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryCityID]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryCityID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryCityID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryCityID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PostalCityID]"
+                      cachedDataType="i4"
+                      cachedName="PostalCityID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCityID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalCityID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[SupplierReference]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SupplierReference"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierReference]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierReference]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[BankAccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="BankAccountName"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[BankAccountBranch]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="BankAccountBranch"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountBranch]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountBranch]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[BankAccountCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankAccountCode"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[BankAccountNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankAccountNumber"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountNumber]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[BankInternationalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="BankInternationalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankInternationalCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankInternationalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PaymentDays]"
+                      cachedDataType="i4"
+                      cachedName="PaymentDays"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDays]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PaymentDays]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[InternalComments]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="InternalComments"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[InternalComments]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[InternalComments]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PhoneNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PhoneNumber"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PhoneNumber]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PhoneNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[FaxNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="FaxNumber"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[FaxNumber]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[FaxNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[WebsiteURL]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="WebsiteURL"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[WebsiteURL]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[WebsiteURL]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryAddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DeliveryAddressLine1"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryAddressLine1]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryAddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DeliveryAddressLine2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryAddressLine2]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DeliveryPostalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryPostalCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryPostalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[DeliveryLocation]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DeliveryLocation"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryLocation]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryLocation]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PostalAddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="PostalAddressLine1"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalAddressLine1]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PostalAddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="PostalAddressLine2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalAddressLine2]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[PostalPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostalPostalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalPostalCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalPostalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[LastEditedBy]"
+                      cachedDataType="i4"
+                      cachedName="LastEditedBy"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[LastEditedBy]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[LastEditedBy]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[ValidFrom]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ValidFrom"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidFrom]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidFrom]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[ValidTo]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="ValidTo"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidTo]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidTo]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierName]"
+                      dataType="wstr"
+                      length="100"
+                      name="SupplierName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierCategoryID]"
+                      dataType="i4"
+                      name="SupplierCategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PrimaryContactPersonID]"
+                      dataType="i4"
+                      name="PrimaryContactPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[AlternateContactPersonID]"
+                      dataType="i4"
+                      name="AlternateContactPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryMethodID]"
+                      dataType="i4"
+                      name="DeliveryMethodID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryCityID]"
+                      dataType="i4"
+                      name="DeliveryCityID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCityID]"
+                      dataType="i4"
+                      name="PostalCityID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[SupplierReference]"
+                      dataType="wstr"
+                      length="20"
+                      name="SupplierReference" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="BankAccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountBranch]"
+                      dataType="wstr"
+                      length="50"
+                      name="BankAccountBranch" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankAccountCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankAccountNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankAccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[BankInternationalCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankInternationalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PaymentDays]"
+                      dataType="i4"
+                      name="PaymentDays" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[InternalComments]"
+                      dataType="nText"
+                      name="InternalComments" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PhoneNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="PhoneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[FaxNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="FaxNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[WebsiteURL]"
+                      dataType="wstr"
+                      length="256"
+                      name="WebsiteURL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="DeliveryAddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="DeliveryAddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="DeliveryPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryLocation]"
+                      dataType="image"
+                      name="DeliveryLocation" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="PostalAddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="PostalAddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[LastEditedBy]"
+                      dataType="i4"
+                      name="LastEditedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidFrom]"
+                      dataType="dbTimeStamp2"
+                      name="ValidFrom"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidTo]"
+                      dataType="dbTimeStamp2"
+                      name="ValidTo"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source Intermidiate Table"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Intermidiate Table"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[OLE_DB_Destination]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  SupplierID, SupplierName, SupplierCategoryID, PrimaryContactPersonID, AlternateContactPersonID, DeliveryMethodID, DeliveryCityID, PostalCityID, SupplierReference, BankAccountName, BankAccountBranch, 
+                         BankAccountCode, BankAccountNumber, BankInternationalCode, PaymentDays, InternalComments, PhoneNumber, FaxNumber, WebsiteURL, DeliveryAddressLine1, DeliveryAddressLine2, DeliveryPostalCode, 
+                         geography::STPointFromText( CAST(DeliveryLocation AS nvarchar(4000)), 4326) AS DeliveryLocation, PostalAddressLine1, PostalAddressLine2, PostalPostalCode, LastEditedBy, ValidFrom, ValidTo
+FROM OLE_DB_Destination</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  connectionManagerRefId="Package.ConnectionManagers[EPBYMINW0111\SQLEXPRESS.wideworldimporters]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierName]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierName]"
+                      name="SupplierName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierCategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierCategoryID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierCategoryID]"
+                      name="SupplierCategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PrimaryContactPersonID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PrimaryContactPersonID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PrimaryContactPersonID]"
+                      name="PrimaryContactPersonID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[AlternateContactPersonID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[AlternateContactPersonID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[AlternateContactPersonID]"
+                      name="AlternateContactPersonID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryMethodID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryMethodID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryMethodID]"
+                      name="DeliveryMethodID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryCityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryCityID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryCityID]"
+                      name="DeliveryCityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalCityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalCityID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalCityID]"
+                      name="PostalCityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierReference]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierReference]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[SupplierReference]"
+                      name="SupplierReference"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountName]"
+                      name="BankAccountName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountBranch]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountBranch]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountBranch]"
+                      name="BankAccountBranch"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountCode]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountCode]"
+                      name="BankAccountCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountNumber]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankAccountNumber]"
+                      name="BankAccountNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankInternationalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankInternationalCode]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[BankInternationalCode]"
+                      name="BankInternationalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PaymentDays]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PaymentDays]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PaymentDays]"
+                      name="PaymentDays"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[InternalComments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[InternalComments]"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[InternalComments]"
+                      name="InternalComments"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PhoneNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PhoneNumber]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PhoneNumber]"
+                      name="PhoneNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[FaxNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[FaxNumber]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[FaxNumber]"
+                      name="FaxNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[WebsiteURL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[WebsiteURL]"
+                      length="256"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[WebsiteURL]"
+                      name="WebsiteURL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryAddressLine1]"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine1]"
+                      name="DeliveryAddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryAddressLine2]"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryAddressLine2]"
+                      name="DeliveryAddressLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryPostalCode]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryPostalCode]"
+                      name="DeliveryPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryLocation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryLocation]"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[DeliveryLocation]"
+                      name="DeliveryLocation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalAddressLine1]"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine1]"
+                      name="PostalAddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalAddressLine2]"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalAddressLine2]"
+                      name="PostalAddressLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalPostalCode]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[PostalPostalCode]"
+                      name="PostalPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[LastEditedBy]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[LastEditedBy]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[LastEditedBy]"
+                      name="LastEditedBy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidFrom]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[ValidFrom]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidFrom]"
+                      name="ValidFrom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidTo]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[ValidTo]"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].Columns[ValidTo]"
+                      name="ValidTo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierName]"
+                      dataType="wstr"
+                      length="100"
+                      name="SupplierName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierCategoryID]"
+                      dataType="i4"
+                      name="SupplierCategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PrimaryContactPersonID]"
+                      dataType="i4"
+                      name="PrimaryContactPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[AlternateContactPersonID]"
+                      dataType="i4"
+                      name="AlternateContactPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryMethodID]"
+                      dataType="i4"
+                      name="DeliveryMethodID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryCityID]"
+                      dataType="i4"
+                      name="DeliveryCityID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalCityID]"
+                      dataType="i4"
+                      name="PostalCityID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[SupplierReference]"
+                      dataType="wstr"
+                      length="20"
+                      name="SupplierReference" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="BankAccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountBranch]"
+                      dataType="wstr"
+                      length="50"
+                      name="BankAccountBranch" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankAccountCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankAccountNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankAccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[BankInternationalCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="BankInternationalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PaymentDays]"
+                      dataType="i4"
+                      name="PaymentDays" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[InternalComments]"
+                      dataType="wstr"
+                      length="4000"
+                      name="InternalComments" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PhoneNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="PhoneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[FaxNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="FaxNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[WebsiteURL]"
+                      dataType="wstr"
+                      length="256"
+                      name="WebsiteURL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="DeliveryAddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="DeliveryAddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="DeliveryPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[DeliveryLocation]"
+                      dataType="image"
+                      name="DeliveryLocation" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="PostalAddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="PostalAddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[PostalPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[LastEditedBy]"
+                      dataType="i4"
+                      name="LastEditedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[ValidFrom]"
+                      dataType="dbTimeStamp2"
+                      name="ValidFrom" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output].ExternalColumns[ValidTo]"
+                      dataType="dbTimeStamp2"
+                      name="ValidTo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierName]"
+                      name="SupplierName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierCategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierCategoryID]"
+                      name="SupplierCategoryID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PrimaryContactPersonID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PrimaryContactPersonID]"
+                      name="PrimaryContactPersonID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[AlternateContactPersonID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[AlternateContactPersonID]"
+                      name="AlternateContactPersonID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryMethodID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryMethodID]"
+                      name="DeliveryMethodID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryCityID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryCityID]"
+                      name="DeliveryCityID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalCityID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalCityID]"
+                      name="PostalCityID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierReference]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[SupplierReference]"
+                      name="SupplierReference" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountName]"
+                      name="BankAccountName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountBranch]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountBranch]"
+                      name="BankAccountBranch" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountCode]"
+                      name="BankAccountCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountNumber]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankAccountNumber]"
+                      name="BankAccountNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankInternationalCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[BankInternationalCode]"
+                      name="BankInternationalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PaymentDays]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PaymentDays]"
+                      name="PaymentDays" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[InternalComments]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[InternalComments]"
+                      name="InternalComments" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PhoneNumber]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PhoneNumber]"
+                      name="PhoneNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[FaxNumber]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[FaxNumber]"
+                      name="FaxNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[WebsiteURL]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[WebsiteURL]"
+                      name="WebsiteURL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryAddressLine1]"
+                      name="DeliveryAddressLine1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryAddressLine2]"
+                      name="DeliveryAddressLine2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryPostalCode]"
+                      name="DeliveryPostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryLocation]"
+                      dataType="image"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[DeliveryLocation]"
+                      name="DeliveryLocation" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalAddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalAddressLine1]"
+                      name="PostalAddressLine1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalAddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalAddressLine2]"
+                      name="PostalAddressLine2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalPostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[PostalPostalCode]"
+                      name="PostalPostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[LastEditedBy]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[LastEditedBy]"
+                      name="LastEditedBy" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ValidFrom]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ValidFrom]"
+                      name="ValidFrom" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ValidTo]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ValidTo]"
+                      name="ValidTo" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
+              endId="Package\Data Flow Task\OLE DB Destination Suppliers Table.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source Intermidiate Table.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="144.000002452305,74.6352951643789" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="316,41.6"
+          Id="Package\Data Flow Task\Lookup from Intermidiate Table to Suppliers Table"
+          TopLeft="60,175" />
+        <NodeLayout
+          Size="240,41.6"
+          Id="Package\Data Flow Task\OLE DB Source Intermidiate Table"
+          TopLeft="92,60" />
+        <NodeLayout
+          Size="246.4,41.6"
+          Id="Package\Data Flow Task\OLE DB Destination Suppliers Table"
+          TopLeft="89,345" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="215,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
+          TopLeft="215,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,128"
+              Start="0,0"
+              End="0,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,54.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
